@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body text-center">
           <div class="my-2"><b>Goal</b>: combine tiles to get “2048”</div>
-          <div>EITHER press the arrow keys OR use your keyboard's arrow keys to shift and combine the same tiles</div>
+          <div>EITHER click the arrow keys OR press your keyboard's arrow keys to shift and combine the same tiles</div>
         </div>
         <div class="modal-footer">
           <div class="d-grid mx-auto">
