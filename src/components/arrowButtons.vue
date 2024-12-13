@@ -32,6 +32,11 @@
       shiftBottom();
     }
   });
+
+  function refreshPage() {
+    // Refresh page
+    window.location.reload();
+  }
 </script>
 
 <template>
@@ -65,12 +70,13 @@
   </div>
 
   <div v-else class="text-center">
-    <h5 v-if="!props.win">Game over &#x1F61E;</h5>
+    <h5 v-if="props.win==='limitless'">Game over!</h5>
+    <h5 v-else-if="!props.win">Game over &#x1F61E;</h5>
     <h5 v-else>You WIN! &#x1F60E;</h5>
     <div class="container">
       <div class="row">
         <div class="col-12 my-1">
-          <a href="classic.html"><button type="button" class="btn gameButton">Retry</button></a>
+          <button type="button" class="btn gameButton" @click="refreshPage()">Retry</button>
         </div>
         <div class="col-12">
           <a href="index.html"><button type="button" class="btn gameButton">Return Home</button></a>
