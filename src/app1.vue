@@ -16,7 +16,7 @@
         <div class="col-md-2 my-2">
           <a><button disabled='true' type="button" class="btn gameButton">Custom Mode</button></a>
         </div>
-        <div class="col-md-2 my-1">*If color looks unfriendly, play in light mode settings*</div>
+        <div class="col-12 my-1" style="color:black">*If color looks unfriendly, play in light mode settings*</div>
       </div>
     </div>
   </div>
