@@ -2,7 +2,6 @@
   "name": "remake2048",
   "version": "0.0.1",
   "private": true,
-  "homepage": "https://mouscydance.github.io/remake2048/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
