@@ -41,14 +41,14 @@
 
 <template>
   <div v-if="!props.is_game_over" class="container">
-    <div class="row justify-content-center mb-2">
+    <div class="row justify-content-center mb-2 pe-4">
       <div class="col-1">
         <a @click="shiftTop()">
           <img src="/arrow.png" id="top"/>
         </a>
       </div>
     </div>
-    <div class="row justify-content-evenly">
+    <div class="row justify-content-evenly pe-4">
       <div class="col-1">
         <a @click="shiftLeft()">
           <img src="/arrow.png" id="left"/>
@@ -60,13 +60,18 @@
         </a>
       </div>
     </div>
-    <div class="row justify-content-center mt-2">
+    <div class="row justify-content-center mt-2 pe-4">
         <div class="col-1">
           <a @click="shiftBottom()">
             <img src="/arrow.png" id="bottom"/>
           </a>
         </div>
     </div> 
+    <div class="row">
+      <div class="col-12 mt-3 text-center">
+          <a href="index.html"><button type="button" class="btn gameButton">Return Home</button></a>
+      </div>
+    </div>
   </div>
 
   <div v-else class="text-center">

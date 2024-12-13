@@ -5,7 +5,7 @@
   import arrowButtons from "@/components/arrowButtons.vue";
 
   // import functions
-  import { randomSpawn, mergeTiles, checkList, have2048, isTableFull } from '@/gameFunc.js'
+  import { randomSpawn, mergeTiles, checkList, have2048, isTableFull } from '@/components/gameFunc.js'
 
   // CONSTANTS
   const ROW = 4;
@@ -188,13 +188,12 @@
             gameOver.value = true;
             return;
           };
+          shouldSpawn = false;
+          return;
         }, 30);
       };
-
-      shouldSpawn = false;
-      return;
-    }
-  }
+    };
+  };
 
   beginning();
 </script>
@@ -203,14 +202,14 @@
   <div class="text-center">
     <h4>2048 - The Remake</h4>
     <div class="mx-auto mt-md-1">
-      <a><button type="button" class="btn gameButton" data-bs-toggle="modal" data-bs-target="#howToPlay">How to play?</button></a>
+      <button type="button" class="btn gameButton" data-bs-toggle="modal" data-bs-target="#howToPlay">How to play?</button>
     </div>
   </div>
 
   <!-- Where the tiles will be at -->
   
   <div class="container">
-    <div class="row justify-content-center mt-md-5 mt-2">
+    <div class="row justify-content-center mt-md-4 mt-2">
       <div class="col-md-4 order-md-2">
         <!-- Tile Area -->
         <playingArea
