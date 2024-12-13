@@ -69,3 +69,54 @@ export function checkList(original, edited) {
     }
     return true;
   }
+
+export function have2048(ROW, COL, tiles_table, winning_no) {
+  //Checks if reached winning_no
+  for (let x = 0; x < ROW; x++) {
+    for (let y = 0; y < COL; y++) {
+      if (tiles_table[x][y] == winning_no) {
+        return true;
+      }
+    }
+  }
+  
+  return false;
+}
+
+export function isTableFull(ROW, COL, tiles_table) {
+  // Checks if table is filled with tiles
+  for (let x = 0; x < ROW; x++) {
+    for (let y = 0; y < COL; y++) {
+      if (tiles_table[x][y] == "") {
+        return false;
+      }
+    }
+  }
+  
+  if(canMerge(ROW, COL, tiles_table)) {
+    return false;
+  }
+  else {
+    return true;
+  };
+}
+
+function canMerge(ROW, COL, tiles_table) {
+  // Checks if there are two tiles next to each other
+  for (let x = 0; x < ROW; x++) {
+    for (let y = 0; y < COL - 1; y++) {
+      if (tiles_table[x][y] === tiles_table[x][y+1]) {
+        return true;
+      }
+    }
+  }
+  for (let y = 0; y < COL; y++) {
+    for (let x = 0; x < ROW - 1; x++) {
+      if (tiles_table[x][y] === tiles_table[x+1][y]) {
+        return true;
+      }
+    }
+  }
+
+  return false
+}

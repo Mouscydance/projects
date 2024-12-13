@@ -11,7 +11,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <div class="my-2"><b>Goal</b>: combine tiles to get “2048”</div>
+          <div class="my-2"><b>Goal</b>: combine tiles to get “2048”!</div>
           <div>EITHER click the arrow keys OR press your keyboard's arrow keys to shift and combine the same tiles</div>
         </div>
         <div class="modal-footer">

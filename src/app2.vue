@@ -5,11 +5,12 @@
   import arrowButtons from "@/components/arrowButtons.vue";
 
   // import functions
-  import { randomSpawn, mergeTiles, checkList } from '@/gameFunc.js'
+  import { randomSpawn, mergeTiles, checkList, have2048, isTableFull } from '@/gameFunc.js'
 
   // CONSTANTS
   const ROW = 4;
   const COL = 4;
+  const WIN_TILE_NO = "2048";
 
   // Tiles reflect where they are in the table
   var tiles_table = reactive([
@@ -27,6 +28,7 @@
 
   // Handle if game is over
   var gameOver = ref(false);
+  var didYouWin = ref(false);
   
   function beginning() {
     // This will always activate when first created
@@ -35,151 +37,163 @@
   }
 
   function shiftTiles(direction) {
-    // Based on 'direction', shift tile
-    if (direction == "top") {
-      for (let y = 0; y < COL; y++) {
-        var temp = [];
-        var merge = "";
-        // For special rule condition
-        var original_row = [];
+    if (!gameOver.value) {
+      // Based on 'direction', shift tile
+      if (direction == "top") {
+        for (let y = 0; y < COL; y++) {
+          var temp = [];
+          var merge = "";
+          // For special rule condition
+          var original_row = [];
+          for (let x = 0; x < ROW; x++) {
+            if (tiles_table[x][y] !== "") {
+              temp.push(tiles_table[x][y]);
+            }
+            original_row.push(tiles_table[x][y]);
+          }
+          for (let i = temp.length; i < ROW; i++) {
+            temp.push("");
+          }
+          
+          merge = mergeTiles(score, shouldSpawn, temp);
+
+          var index = 0;
+          while (index < merge.length) {
+            tiles_table[index][y] = merge[index];
+            index++;
+          }
+          while (index < ROW) {
+            tiles_table[index][y] = "";
+            index++;
+          }
+
+          if (!checkList(original_row, merge)) {
+            shouldSpawn = true;
+          }
+        }
+      }
+      else if (direction == 'bottom') {
+        for (let y = 0; y < COL; y++) {
+          var temp = [];
+          var merge = "";
+          // For special rule condition
+          var original_row = [];
+          for (let x = ROW - 1; x > -1 ; x--) {
+            if (tiles_table[x][y] !== "") {
+              temp.push(tiles_table[x][y]);
+            }
+            original_row.push(tiles_table[x][y])
+          }
+          for (let i = temp.length; i < ROW; i++) {
+            temp.push("");
+          }
+
+          merge = mergeTiles(score, shouldSpawn, temp);
+
+          var index = 0;
+          while (index < merge.length) {
+            tiles_table[ROW - index - 1][y] = merge[index];
+            index++;
+          }
+          while (index < ROW) {
+            tiles_table[ROW - index - 1][y] = "";
+            index++;
+          }
+
+          if (!checkList(original_row, merge)) {
+            shouldSpawn = true;
+          }
+        }
+      }
+      else if (direction == 'right') {
         for (let x = 0; x < ROW; x++) {
-          if (tiles_table[x][y] !== "") {
-            temp.push(tiles_table[x][y]);
+          var temp = [];
+          var merge = "";
+          // For special rule condition
+          var original_row = [];
+          for (let y = COL - 1; y > -1 ; y--) {
+            if (tiles_table[x][y] !== "") {
+              temp.push(tiles_table[x][y]);
+            }
+            original_row.push(tiles_table[x][y])
           }
-          original_row.push(tiles_table[x][y]);
-        }
-        for (let i = temp.length; i < ROW; i++) {
-          temp.push("");
-        }
-        
-        merge = mergeTiles(score, shouldSpawn, temp);
+          
+          for (let i = temp.length; i < COL; i++) {
+            temp.push("");
+          }
 
-        var index = 0;
-        while (index < merge.length) {
-          tiles_table[index][y] = merge[index];
-          index++;
-        }
-        while (index < ROW) {
-          tiles_table[index][y] = "";
-          index++;
-        }
+          merge = mergeTiles(score, shouldSpawn, temp);
 
-        if (!checkList(original_row, merge)) {
-          shouldSpawn = true;
+          var index = 0;
+          while (index < merge.length) {
+            tiles_table[x][COL - index - 1] = merge[index];
+            index++;
+          }
+          while (index < COL) {
+            tiles_table[x][COL - index - 1] = "";
+            index++;
+          }
+
+          if (!checkList(original_row, merge)) {
+            shouldSpawn = true;
+          }
         }
       }
-    }
-    else if (direction == 'bottom') {
-      for (let y = 0; y < COL; y++) {
-        var temp = [];
-        var merge = "";
-        // For special rule condition
-        var original_row = [];
-        for (let x = ROW - 1; x > -1 ; x--) {
-          if (tiles_table[x][y] !== "") {
-            temp.push(tiles_table[x][y]);
+      else if (direction == 'left') {
+        for (let x = 0; x < ROW; x++) {
+          var temp = [];
+          var merge = "";
+          // For special rule condition
+          var original_row = [];
+          for (let y = 0; y < COL ; y++) {
+            if (tiles_table[x][y] !== "") {
+              temp.push(tiles_table[x][y]);
+            }
+            original_row.push(tiles_table[x][y])
           }
-          original_row.push(tiles_table[x][y])
-        }
-        for (let i = temp.length; i < ROW; i++) {
-          temp.push("");
-        }
+          
+          for (let i = temp.length; i < COL; i++) {
+            temp.push("");
+          }
 
-        merge = mergeTiles(score, shouldSpawn, temp);
+          merge = mergeTiles(score, shouldSpawn, temp);
 
-        var index = 0;
-        while (index < merge.length) {
-          tiles_table[ROW - index - 1][y] = merge[index];
-          index++;
-        }
-        while (index < ROW) {
-          tiles_table[ROW - index - 1][y] = "";
-          index++;
-        }
+          var index = 0;
+          while (index < merge.length) {
+            tiles_table[x][index] = merge[index];
+            index++;
+          }
+          while (index < COL) {
+            tiles_table[x][index] = "";
+            index++;
+          }
 
-        if (!checkList(original_row, merge)) {
-          shouldSpawn = true;
+          if (!checkList(original_row, merge)) {
+            shouldSpawn = true;
+          }
         }
       }
-    }
-    else if (direction == 'right') {
-      for (let x = 0; x < ROW; x++) {
-        var temp = [];
-        var merge = "";
-        // For special rule condition
-        var original_row = [];
-        for (let y = COL - 1; y > -1 ; y--) {
-          if (tiles_table[x][y] !== "") {
-            temp.push(tiles_table[x][y]);
-          }
-          original_row.push(tiles_table[x][y])
-        }
-        
-        for (let i = temp.length; i < COL; i++) {
-          temp.push("");
-        }
 
-        merge = mergeTiles(score, shouldSpawn, temp);
-
-        var index = 0;
-        while (index < merge.length) {
-          tiles_table[x][COL - index - 1] = merge[index];
-          index++;
-        }
-        while (index < COL) {
-          tiles_table[x][COL - index - 1] = "";
-          index++;
-        }
-
-        if (!checkList(original_row, merge)) {
-          shouldSpawn = true;
-        }
+      if (have2048(ROW, COL, tiles_table, WIN_TILE_NO)) {
+        gameOver.value = true;
+        didYouWin.value = true;
+        return;
       }
+
+      // Make it look more 'animated'
+      if (shouldSpawn) {
+        setTimeout(() => {
+          randomSpawn(ROW, COL, tiles_table);
+          if (isTableFull(ROW, COL, tiles_table)) {
+            gameOver.value = true;
+            return;
+          };
+        }, 30);
+      };
+
+      shouldSpawn = false;
+      return;
     }
-    else if (direction == 'left') {
-      for (let x = 0; x < ROW; x++) {
-        var temp = [];
-        var merge = "";
-        // For special rule condition
-        var original_row = [];
-        for (let y = 0; y < COL ; y++) {
-          if (tiles_table[x][y] !== "") {
-            temp.push(tiles_table[x][y]);
-          }
-          original_row.push(tiles_table[x][y])
-        }
-        
-        for (let i = temp.length; i < COL; i++) {
-          temp.push("");
-        }
-
-        merge = mergeTiles(score, shouldSpawn, temp);
-
-        var index = 0;
-        while (index < merge.length) {
-          tiles_table[x][index] = merge[index];
-          index++;
-        }
-        while (index < COL) {
-          tiles_table[x][index] = "";
-          index++;
-        }
-
-        if (!checkList(original_row, merge)) {
-          shouldSpawn = true;
-        }
-      }
-    }
-
-    // Make it look more 'animated'
-    if (shouldSpawn) {
-      setTimeout(() => {
-        randomSpawn(ROW, COL, tiles_table);
-      }, 70);
-    };
-
-    shouldSpawn = false;
-    return;
   }
 
   beginning();
@@ -187,9 +201,9 @@
 
 <template>
   <div class="text-center">
-    <h3>2048 - The Remake</h3>
+    <h4>2048 - The Remake</h4>
     <div class="mx-auto mt-md-1">
-      <a><button type="button" class="btn gameButton fs-6" data-bs-toggle="modal" data-bs-target="#howToPlay">How to play</button></a>
+      <a><button type="button" class="btn gameButton" data-bs-toggle="modal" data-bs-target="#howToPlay">How to play?</button></a>
     </div>
   </div>
 
@@ -213,7 +227,8 @@
             <!-- Arrow press to shift tile -->
             <arrowButtons
               @arrow-press="shiftTiles"
-              :is_game_over = "gameOver"
+              :is_game_over="gameOver"
+              :win="didYouWin"
             ></arrowButtons>
           </div>
         </div>

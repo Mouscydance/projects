@@ -1,5 +1,5 @@
 <script setup>
-  import playInfoModal from "./components/howToPlayModal.vue"
+  import playInfoModal from "@/components/howToPlayModal.vue"
 </script>
 
 <template>
@@ -8,10 +8,10 @@
     <div class="container">
       <div class="row mt-4">
         <div class="col-12">
-          <a href="classic.html"><button type="button" class="btn gameButton">Let's Begin</button></a>
+          <a href="./classic.html"><button type="button" class="btn gameButton">Classic Mode</button></a>
         </div>
         <div class="col-12 mt-2">
-          <button type="button" class="btn gameButton" data-bs-toggle="modal" data-bs-target="#howToPlay">How to play</button>
+          <button type="button" class="btn gameButton" data-bs-toggle="modal" data-bs-target="#howToPlay">How to play?</button>
         </div>
       </div>
     </div>
@@ -25,5 +25,10 @@
   .gameButton {
     background-color: #53D8FB;
     font-weight: bold;
+  }
+
+  a:link, a:visited {
+    color: #212529;
+    text-decoration: none;
   }
 </style>

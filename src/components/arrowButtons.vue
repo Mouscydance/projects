@@ -1,6 +1,6 @@
 <script setup>
   // Defining emits for component
-  const props = defineProps(['is_game_over']);
+  const props = defineProps(['is_game_over', 'win']);
   const emit = defineEmits(['arrow-press']);
 
   // Shift depends on direction
@@ -64,8 +64,19 @@
     </div> 
   </div>
 
-  <div v-else>
-    Game over
+  <div v-else class="text-center">
+    <h5 v-if="!props.win">Game over &#x1F61E;</h5>
+    <h5 v-else>You WIN! &#x1F60E;</h5>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 my-1">
+          <a href="classic.html"><button type="button" class="btn gameButton">Retry</button></a>
+        </div>
+        <div class="col-12">
+          <a href="index.html"><button type="button" class="btn gameButton">Return Home</button></a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -85,5 +96,15 @@
 
   #left {
     transform: rotate(-90deg);
+  }
+
+  .gameButton {
+    background-color: #53D8FB;
+    font-weight: bold;
+  }
+
+  a:link, a:visited {
+    color: #212529;
+    text-decoration: none;
   }
 </style>
