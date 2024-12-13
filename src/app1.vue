@@ -8,10 +8,10 @@
     <div class="container">
       <div class="row mt-4 justify-content-center">
         <div class="col-2">
-          <a href="./classic.html"><button type="button" class="btn gameButton">Classic Mode</button></a>
+          <a href="src/classic.html"><button type="button" class="btn gameButton">Classic Mode</button></a>
         </div>
         <div class="col-2">
-          <a href="./limitless.html"><button type="button" class="btn gameButton">Limitless Mode</button></a>
+          <a href="src/limitless.html"><button type="button" class="btn gameButton">Limitless Mode</button></a>
         </div>
         <div class="col-2">
           <a><button disabled='true' type="button" class="btn gameButton">Custom Mode</button></a>

@@ -69,7 +69,7 @@
     </div> 
     <div class="row">
       <div class="col-12 mt-3 text-center">
-          <a href="index.html"><button type="button" class="btn gameButton">Return Home</button></a>
+          <a href="../index.html"><button type="button" class="btn gameButton">Return Home</button></a>
       </div>
     </div>
   </div>
@@ -84,7 +84,7 @@
           <button type="button" class="btn gameButton" @click="refreshPage()">Retry</button>
         </div>
         <div class="col-12">
-          <a href="index.html"><button type="button" class="btn gameButton">Return Home</button></a>
+          <a href="../index.html"><button type="button" class="btn gameButton">Return Home</button></a>
         </div>
       </div>
     </div>
