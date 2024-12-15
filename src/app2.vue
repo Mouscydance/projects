@@ -10,7 +10,7 @@
   // CONSTANTS
   const ROW = 4;
   const COL = 4;
-  const WIN_TILE_NO = "2048";
+  var WIN_TILE_NO = ref("2048");
 
   // Tiles reflect where they are in the table
   var tiles_table = reactive([
@@ -218,7 +218,7 @@
       </div>
       <div class="col-md-4 order-md-1">
         <div class="row">
-          <div class="col-12 text-center mb-md-5 mb-3 mt-2">
+          <div class="col-12 text-center mb-md-4 mb-2 mt-2">
             <!-- Scoring -->
             <span id="score"><b>SCORE:</b> {{ score }}</span>
           </div>
@@ -236,7 +236,10 @@
   </div>
 
   <!-- Info Modal -->
-  <playInfoModal></playInfoModal>
+  <playInfoModal
+    :is_limitless = false
+    :wintileno = WIN_TILE_NO
+  ></playInfoModal>
 </template>
 
 <style scoped>

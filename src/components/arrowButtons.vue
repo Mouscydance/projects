@@ -93,8 +93,8 @@
 
 <style scoped>
   img {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
   }
 
   #right {
