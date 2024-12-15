@@ -203,7 +203,7 @@
 
   <!-- Where the tiles will be at -->
   
-  <div class="container">
+  <div class="container mx-auto">
     <div class="row justify-content-center mt-md-4 mt-2">
       <div class="col-md-4 order-md-2">
         <!-- Tile Area -->
