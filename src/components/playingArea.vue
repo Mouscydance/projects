@@ -26,8 +26,8 @@
   }
 
   .tiles {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -38,8 +38,8 @@
   }
 
   .tiles2{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -50,8 +50,8 @@
   }
 
   .tiles4{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -62,8 +62,8 @@
   }
 
   .tiles8{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -74,8 +74,8 @@
   }
 
   .tiles16{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -86,8 +86,8 @@
   }
 
   .tiles32{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -98,8 +98,8 @@
   }
 
   .tiles64{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -110,8 +110,8 @@
   }
 
   .tiles128{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -122,8 +122,8 @@
   }
 
   .tiles256{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -134,8 +134,8 @@
   }
 
   .tiles512{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -146,8 +146,8 @@
   }
 
   .tiles1024{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
@@ -158,8 +158,8 @@
   }
 
   .tiles2048{
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     align-content: center;
     font-size: large;
