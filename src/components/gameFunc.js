@@ -1,4 +1,4 @@
-export function randomSpawn(ROW, COL, tiles_table) {
+export function randomSpawn(ROW, COL, tiles_table, first="2", second="4") {
     // This finds all the spaces with emptyness
     var empty_list = [];
     for (let x = 0; x < ROW; x++) {
@@ -20,10 +20,10 @@ export function randomSpawn(ROW, COL, tiles_table) {
     var number_random = Math.random();
 
     if (number_random < 0.9) {
-      tiles_table[empty_list[index_random][0]][empty_list[index_random][1]] = "2";
+      tiles_table[empty_list[index_random][0]][empty_list[index_random][1]] = first;
     }
     else {
-      tiles_table[empty_list[index_random][0]][empty_list[index_random][1]] = "4";
+      tiles_table[empty_list[index_random][0]][empty_list[index_random][1]] = second;
     }
 
     return;
@@ -119,4 +119,23 @@ function canMerge(ROW, COL, tiles_table) {
   }
 
   return false
+}
+
+export function createTable(ROW, COL) {
+  let temp = [];
+
+  for (let i = 0; i < ROW; i++) {
+    let col_temp = [];
+    for (let j = 0; j < COL; j++) {
+      col_temp.push("");
+    }
+    temp.push(col_temp);
+  }
+
+  return temp;
+}
+
+export function refreshPage() {
+  // Refresh page
+  window.location.reload();
 }

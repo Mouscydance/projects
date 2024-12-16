@@ -1,5 +1,7 @@
 <script setup>
-  // Defining emits for component
+  import { refreshPage } from './gameFunc';
+
+  // Defining props and emits for component
   const props = defineProps(['is_game_over', 'win']);
   const emit = defineEmits(['arrow-press']);
 
@@ -32,11 +34,6 @@
       shiftBottom();
     }
   });
-
-  function refreshPage() {
-    // Refresh page
-    window.location.reload();
-  }
 </script>
 
 <template>

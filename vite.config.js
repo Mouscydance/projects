@@ -22,7 +22,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         classic: resolve(__dirname, 'src/classic.html'),
-        limitless: resolve(__dirname, 'src/limitless.html')
+        limitless: resolve(__dirname, 'src/limitless.html'),
+        custom: resolve(__dirname, 'src/custom.html'),
       }
     }
   }
