@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="modal fade" id="howToPlay" tabindex="-1" aria-labelledby="howToPlayLabel" aria-hidden="true">
+  <div class="modal fade" id="howToPlay" tabindex="-1" aria-labelledby="howToPlayLabel">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

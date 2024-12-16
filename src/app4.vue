@@ -6,7 +6,7 @@
   import customSettingsModal from "./components/customSettings.vue";
 
   // import functions
-  import { randomSpawn, mergeTiles, checkList, isTableFull, createTable, refreshPage } from '@/components/gameFunc.js'
+  import { randomSpawn, mergeTiles, checkList, isTableFull, createTable, refreshPage, have2048 } from '@/components/gameFunc.js'
 
   // Table variables
   var ROW = ref(4);
@@ -14,6 +14,9 @@
 
   // Highest tile variable
   var WIN_TILE_NO = "2048";
+  // Two of the tiles to spawn in
+  var first_no = "2";
+  var second_no = "4";
 
   // Tiles reflect where they are in the table
   var tiles_table = reactive([
@@ -32,26 +35,40 @@
   // Handle if game is over
   var gameOver = ref(false);
   var didYouWin = ref('limitless');
+  var isGameModeLimitless = ref(true)
 
   // Determine if he / she has configured the settings
   var customSettings = ref(false);
   
   function beginning() {
     // This will always activate when first created
-    randomSpawn(ROW, COL, tiles_table);
-    randomSpawn(ROW, COL, tiles_table);
+    randomSpawn(ROW, COL, tiles_table, first_no, second_no);
+    randomSpawn(ROW, COL, tiles_table, first_no, second_no);
   }
 
-  function customisedParams(row, col) {
+  function customisedParams(row, col, highest_tile, two_tile_no) {
     // Ensures all customised parameters are saved
     
     ROW = row;
     COL = col;
     customSettings.value = true;
+    if (highest_tile !== "limitless") {
+      didYouWin = ref(false);
+      WIN_TILE_NO = highest_tile;
+      isGameModeLimitless = ref(false)
+    }
+    else {
+      didYouWin = ref('limitless');
+      isGameModeLimitless = ref(true)
+    }
+
+    // Figure out which one is smaller than other
+    two_tile_no = two_tile_no.toSorted((a , b) => a - b);
+    first_no = two_tile_no[0];
+    second_no = two_tile_no[1];
 
     // Create customised table
     tiles_table = reactive(createTable(ROW, COL))
-    console.log(tiles_table);
     
     beginning();
 
@@ -197,10 +214,18 @@
         }
       }
 
+      if (didYouWin.value !== "limitless") {
+        if (have2048(ROW, COL, tiles_table, WIN_TILE_NO)) {
+          gameOver.value = true;
+          didYouWin.value = true;
+          return;
+        }
+      }
+
       // Make it look more 'animated'
       if (shouldSpawn) {
         setTimeout(() => {
-          randomSpawn(ROW, COL, tiles_table);
+          randomSpawn(ROW, COL, tiles_table, first_no, second_no);
           if (isTableFull(ROW, COL, tiles_table)) {
             gameOver.value = true;
             return;
@@ -211,13 +236,6 @@
       };
     };
   };
-
-  function reloadAndChange() {
-    // Reset settings and do fresh page reload
-    customSettings.value = false;
-    
-    refreshPage();
-  }
 </script>
 
 <template>
@@ -257,7 +275,7 @@
               <!-- Scoring -->
               <span id="score"><b>SCORE:</b> {{ score }}</span>
             </div>
-            <div class="col-12">
+            <div class="col-12 ">
               <!-- Arrow press to shift tile -->
               <arrowButtons
                 @arrow-press="shiftTiles"
@@ -265,19 +283,33 @@
                 :win="didYouWin"
               ></arrowButtons>
             </div>
-            <!-- To reset settings -->
-            <div class="col-12 text-center mt-1">
-              <button type="button" class="btn gameButton" @click="reloadAndChange()">Change Settings</button>
+            <div class="col-12 my-1 text-center">
+              <button type="button" class="btn gameButton" @click="refreshPage()">Change Settings</button>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col text-center">
+          Game Mode: {{ didYouWin=="limitless" ? "Limitless" : "Reach Tile Number " + WIN_TILE_NO}}
+        </div>
+      </div>
+      <div v-if="didYouWin !== 'limitless'" class="row mt-1">
+        <div class="col text-center">
+          Reach Tile Number:  {{ WIN_TILE_NO }}
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col text-center">
+          Generating Tile Numbers:  {{ first_no }} and {{ second_no }}
         </div>
       </div>
     </div>
 
     <!-- Info Modal -->
     <playInfoModal
-      :is_limitless = true
-      :wintileno = false
+      :is_limitless = isGameModeLimitless
+      :wintileno = WIN_TILE_NO
     ></playInfoModal>
 
   </div>
