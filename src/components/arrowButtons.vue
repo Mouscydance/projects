@@ -38,7 +38,7 @@
 
 <template>
   <div v-if="!props.is_game_over" class="container">
-    <div class="row justify-content-center mb-2 pe-4">
+    <div class="row justify-content-center mb-md-2 mb-3 pe-4">
       <div class="col-1">
         <a @click="shiftTop()">
           <img src="/arrow.png" id="top"/>
@@ -57,7 +57,7 @@
         </a>
       </div>
     </div>
-    <div class="row justify-content-center mt-2 pe-4">
+    <div class="row justify-content-center mt-md-2 mt-3 pe-4">
         <div class="col-1">
           <a @click="shiftBottom()">
             <img src="/arrow.png" id="bottom"/>

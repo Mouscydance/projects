@@ -33,6 +33,14 @@
     font-size: large;
     font-weight: 700;
     }
+  
+  @media (max-width:768px){
+    .tiles {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  
   #tiles {
     background-color: #FAEBD7;
     color: #330000;
