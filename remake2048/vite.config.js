@@ -13,7 +13,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./remake2048/src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
   base: "/projects/remake2048/",
