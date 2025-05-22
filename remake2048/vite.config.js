@@ -13,10 +13,10 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./remake2048/src', import.meta.url))
     },
   },
-  base: "/remake2048/",
+  base: "/projects/remake2048/",
   build: {
     rollupOptions: {
       input: {
