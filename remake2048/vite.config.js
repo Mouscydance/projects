@@ -16,7 +16,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  base: "/remake2048/",
+  base: "projects/remake2048/",
   build: {
     rollupOptions: {
       input: {
